@@ -78,7 +78,7 @@ public class Teacher_1_20_Byte {
         
         ////给定a.txt，读取a.txt中所有数据并输出
 //        try {
-//            FileInputStream inputStream = new FileInputStream("test.txt");//在Java_26下，和src同级
+//            FileInputStream inputStream = new FileInputStream("testSynchronousQueue.txt");//在Java_26下，和src同级
 //
 ////10 ： 是 LF 即 "\n"   13：是CR 即 "\r"
 ////在不同的操作系统中，表示的方式是不一样的。在UNIX系统中，换行符使用"\n" , 在 windows 系统中换行使用 "\r\n"，算两个byte; 

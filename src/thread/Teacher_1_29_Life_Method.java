@@ -96,7 +96,7 @@ public class Teacher_1_29_Life_Method {
     	
     	
     	
-//        String strs = new String("test wait");
+//        String strs = new String("testSynchronousQueue wait");
 //        new Thread("A"){
 //            @Override
 //            public void run() {

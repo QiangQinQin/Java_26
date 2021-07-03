@@ -26,7 +26,7 @@ public class Teacher_3_6_MyTcpClient {
                   String info = input.readLine();//加了\n   //会阻塞
                   //获取连接对象的输出流
                   output = new PrintWriter(socket.getOutputStream());
-//                  System.out.println("debug-info: "+info);//test!!!!!!
+//                  System.out.println("debug-info: "+info);//testSynchronousQueue!!!!!!
                   //通过输出流对象写入info数据
                   output.println(info); //tcp是存在缓冲区，有可能缓冲区没有刷新就导致数据无法传输
                   output.flush();

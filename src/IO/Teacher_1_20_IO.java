@@ -195,7 +195,7 @@ public class Teacher_1_20_IO {
 //        delete(file4);//调用方法，递归删除
 
 //        //练习6：获取文件名、文件大小、文件的绝对路径、父路径
-//        File file5 = new File("./test.txt");
+//        File file5 = new File("./testSynchronousQueue.txt");
 //        if(!file5.exists()){
 //            try {
 //                file5.createNewFile();

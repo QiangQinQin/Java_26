@@ -8,7 +8,7 @@ import java.util.function.Function;
  * lambda表达式
  * java1.8出现   让我们用更加简洁流畅（比匿名内部类还 简洁）的代码完成功能（函数式编程能力）
  *
- * eg. TestLambda lambda2 = ()-> System.out.println("test lambda");
+ * eg. TestLambda lambda2 = ()-> System.out.println("testSynchronousQueue lambda");
  * 语法:
 	 * =左边   哪个函数式接口的  引用
 	 * =右边 lambda表达式
@@ -70,7 +70,7 @@ public class Teacher_1_27_lambda {
         
         
         //lambda表达式
-        TestLambda1 lambda2 = (test)-> System.out.println("test lambda");
+        TestLambda1 lambda2 = (test)-> System.out.println("testSynchronousQueue lambda");
         BinaryOperator<Long>functionAdd=(x,y)->x+y;
 
       //  Long result=functionAdd(1L,2L);

@@ -48,7 +48,7 @@ public class Teacher_1_27_RandomAccess {
 		//RandomAccessFile
 		try {
 			//在指定位置去追加一段数据
-			file= new RandomAccessFile("test.txt","rw");//可读可写
+			file= new RandomAccessFile("testSynchronousQueue.txt","rw");//可读可写
 			//移动文件指针
 			file.seek((long)(Math.random() * file.length()));
 			//获取随机文件指针的位置
@@ -93,7 +93,7 @@ public class Teacher_1_27_RandomAccess {
 			
 		
 //			//随机读取文件中某一部分的数据
-//			File f = new File("test.txt");
+//			File f = new File("testSynchronousQueue.txt");
 //			RandomAccessFile file = new RandomAccessFile(f,"r");
 //			file.seek( (long)(Math.random() * f.length()));
 //			

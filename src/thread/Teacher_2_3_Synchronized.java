@@ -83,22 +83,22 @@ public class Teacher_2_3_Synchronized {
         }
     }
     public static void main(String[] args) {
-//      Teacher_3_23_AIO test = new Teacher_3_23_AIO();
+//      Teacher_3_23_AIO testSynchronousQueue = new Teacher_3_23_AIO();
 //      Teacher_3_23_AIO test0 = new Teacher_3_23_AIO();
-    	//若下面A 执行 test.test1() 和 B 执行 test0.test1(),会交替执行   //因为两个不是一个锁,所以不是一个执行完再下一个
+    	//若下面A 执行 testSynchronousQueue.test1() 和 B 执行 test0.test1(),会交替执行   //因为两个不是一个锁,所以不是一个执行完再下一个
 //      new Thread("A"){
 //          @Override
 //          public void run() {
-//              //test.test1();//当前是test对象
-//              test.test2();
+//              //testSynchronousQueue.test1();//当前是test对象
+//              testSynchronousQueue.test2();
 //          }
 //      }.start();
 //
 //      new Thread("B"){
 //          @Override
 //          public void run() {
-//              //test.test1();
-//              test.test2();
+//              //testSynchronousQueue.test1();
+//              testSynchronousQueue.test2();
 //          }
 //      }.start();
     	

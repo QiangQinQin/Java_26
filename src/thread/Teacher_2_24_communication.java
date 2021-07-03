@@ -14,7 +14,7 @@ package thread;
  * 
  * 思考：这三个方法不是Thread类中声明的方法，而是Object类中声明的方法？
  *    每个对象都有一个自己的锁，当前线程需要等待某个对象的锁，如果用线程来操作，这个线程可能需要等待多个线程所释放的锁（不知道当前线程需要等待哪一个线程的锁,操作变复杂）
- *      String lock = new String("test");
+ *      String lock = new String("testSynchronousQueue");
         try {
             synchronized (lock){//需要先获取锁
                 lock.wait(); //让当前线程陷入阻塞 A线程陷入阻塞 立即释放锁
@@ -122,7 +122,7 @@ public class Teacher_2_24_communication {
 
 
 ////      B线程唤醒A线程
-//        String lock = new String("test");
+//        String lock = new String("testSynchronousQueue");
 //        Thread threadA = new Thread("A"){
 //            @Override
 //            public void run() {

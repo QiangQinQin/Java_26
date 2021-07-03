@@ -2,6 +2,7 @@ package thread;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * @author QiangQin
@@ -19,9 +20,18 @@ public class Teacher_6_6_BlockingQueue {
     }
 
     //    无界队列
-    public static void linkedBgQueue() throws InterruptedException {
-        LinkedBlockingQueue<Integer> blockingQueue = new LinkedBlockingQueue<>();//没有容量限制
-        blockingQueue.put(12);//会抛出异常
+    public static void linkedQueue() throws InterruptedException {
+        LinkedBlockingQueue<Integer> linkedQueue = new LinkedBlockingQueue<>();//没有容量限制
+        linkedQueue.put(12);//会抛出异常
+    }
+
+    //同步阻塞队列
+    public static void  synchronousQueue() throws InterruptedException {
+        SynchronousQueue<Integer> synchronousQueue = new SynchronousQueue<>();//没有容量限制
+        synchronousQueue.put(12);//会抛出异常
+//        System.out.println(synchronousQueue);
+//        synchronousQueue.put(13);//会抛出异常
+//        System.out.println(synchronousQueue);
     }
 
 }
