@@ -21,9 +21,9 @@ import java.util.Iterator;
  * Deque接口     （double ended queue）双端队列（两端都可以插入删除）
  * 
  *   Queue（栈）                             Deque
- *  add(E e)     对应           addLast(E)：             队尾插入元素，失败抛出异常
+ *  add(E e)     对应   addLast(E)：   队尾插入元素，失败抛出异常
  * offer(E e)          offerLast(E)    队尾插入元素，失败返回false
- *  remove             removeFirst()   获取并删除队头元素，失败抛出异常
+ *  remove             removeFirst()   获取并删除队头元素，失败抛出异常（即若队空）
  *  poll                 pollFirst()   获取并删除队头元素，失败返回null
  *  element             getFirst()     获取并不删除队头元素，失败抛出异常
  *  peek                peekFirst      获取并不删除队头元素，失败返回null

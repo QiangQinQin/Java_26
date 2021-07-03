@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.concurrent.BlockingQueue;
 
 /* 自己实现ArrayDeque
  * 基于  双端  队列  实现(首尾相连)
@@ -117,6 +118,7 @@ public class Teacher_1_25_ArrayDeque {
 		              //应该 60 70 _ _ _ _ _ 30 40 50 
 		System.out.println(deque);
 
+//		BlockingQueue
 	}
 
 }

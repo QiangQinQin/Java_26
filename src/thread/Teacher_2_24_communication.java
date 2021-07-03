@@ -58,7 +58,7 @@ package thread;
  * 
  */
 
-//有三个线程，分别A,B,C线程，需要线程交替打印A B C  ABC  ABC...打印10次
+//有三个线程，分别A,B,C线程，需要线程交替打印A B C  ABC  ABC...打印10次!!!!
 //对象 （含value标志）
 class MyObj{
     private int nextValue;

@@ -2,6 +2,9 @@ package thread;
 
 import java.io.Serializable;
 import java.util.AbstractMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -180,6 +183,33 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class Teacher_3_3_ConcurrentHashMap {
     public static void main(String[] args) {
+//        Hashtable
     	 //ConcurrentHashMap
+        ConcurrentHashMap<Integer, Integer> hashMap = new ConcurrentHashMap<>();
+//        hashMap.put(1,1);
+        hashMap.putIfAbsent(1,11);//只有当没有key为1的时，才能插入
+        hashMap.remove(1,1);//key都为1，但是value和11不一样，所以删除不了
+        hashMap.remove(1);
+        hashMap.get(1);
+        /*
+               1   2   3   4
+            |
+
+           当读取一次iterator.next(); 后，指针如下
+
+              1   2   3   4
+              |
+
+        * */
+
+        Iterator<Map.Entry<Integer, Integer>> iterator = hashMap.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<Integer, Integer> entry = iterator.next();
+            System.out.println(entry.getKey()+  ","+entry.getValue());
+
+        }
+
+
+
     }
 }
