@@ -44,7 +44,7 @@ import java.util.concurrent.FutureTask;
 	 * 3）匿名线程 匿名内部类//可以不算
 	 * 4) 实现Callable接口，重写call方法
 			 * Callable接口存在Executor框架中类，相比于Runnable更加强大
-			 * a.Callable可以在任务执行结束之后提供一个返回值
+			 * a.Callable可以在任务执行结束之后提供一个 返回值
 			 * b.可在call方法中抛出异常
 			 * c.运行Callable任务可以拿到一个Future对象，Future提供get方法拿到返回值(异步)
 			 * 
@@ -114,12 +114,12 @@ public class Teacher_1_27_Thread {
         Callable<Integer> callableTask = new MyCallable();
         //需要做封装，才能传
         FutureTask<Integer> task = new FutureTask<>(callableTask);// FutureTask是runnable的一个实现，提供get方法
-        Thread thread = new Thread(task);
+        Thread thread = new Thread(task);//参数只能是runnable类型或其子类
         thread.start();
 
-        //接受线程执行之后的结果
+        //接受子线程执行之后的结果
         try {
-        	// FutureTask提供get方法
+        	// FutureTask提供get方法，（等待直到有结果传过来，主线程才能往后执行）
             Integer integer = task.get();
             System.out.println("result: "+integer);
         } catch (InterruptedException e) {//自动生成的
