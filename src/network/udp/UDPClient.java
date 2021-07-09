@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-//服务器端 接受
-public class MyUDPServer {
+//客户端 接受数据，要先启动起来
+public class UDPClient {
     public static void main(String[] args) {
         try {
-            //构造发送数据的对象
+            //绑定端口
             DatagramSocket socket = new DatagramSocket(6666);
             //接收数据
             byte[] buf = new byte[1024];

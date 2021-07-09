@@ -1,4 +1,4 @@
-package network;
+package network.TCP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-//服务器端先启动
+//服务器端要先启动，绑定端口，处于listen状态
 //一对多
 //客户端可以启动，但是无法建立连接
 /*
