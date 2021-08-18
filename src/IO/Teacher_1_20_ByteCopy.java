@@ -4,8 +4,6 @@ import java.io.*;
 import java.util.Arrays;
 
 //课堂练习：拷贝图片或音频
-
-
 public class Teacher_1_20_ByteCopy {
 	//方法一：一个字节一个字节拷贝   并且   打印拷贝所耗时间
     public static void copyByOntByte(File file1, File file2){

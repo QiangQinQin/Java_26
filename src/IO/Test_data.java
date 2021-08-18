@@ -5,6 +5,13 @@ import java.util.*;
 /**
      统计十万数据出现的次数，第一个重复的数据，出现次数最多的数据，重复性元素只打印一次
      https://www.cxyzjd.com/article/weixin_43356265/88077067
+
+ 类比课堂练习：
+ 随机生成1万个数据(random)保存下来(数据范围：0~1000)
+     1、统计每个数据出现的次数
+     2、按照数据出现的次数多少从多往少排序：数字2，出现10次
+     3、将数据按照生成的先后顺序进行打印且数据不能重复
+
  */
 public class Test_data {
     public static void main(String[] args) {
