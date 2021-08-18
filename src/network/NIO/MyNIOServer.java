@@ -39,17 +39,17 @@ public class MyNIOServer {
             //实例化Selector
             selector = Selector.open();//和客户端的 是不同的实例  而且一个线程只能有唯一的selector实例
             //将serverSocketChannel  注册到 选择器上
-            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);//(关注的类型 ) 事件类型 SelectionKey.OP_ACCEPT即可接收事件
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);// 即服务端  关注 （很多个）可接收事件
 
-            //即有事件发生
-            while(selector.select() > 0){ //进行监听，调用selector.select方法，这个方法是一个阻塞方法，没有事件则阻塞等待，有事件才会返回
+            //select是一个阻塞方法，监听：没有事件则阻塞等待，有事件才会返回
+            while(selector.select() > 0){
                 Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
-                //遍历已完成事件的集合（
+                //遍历已就绪事件的集合
                 while(iterator.hasNext()){
                     SelectionKey selectionKey = iterator.next();
                     //遍历一个  处理一个(所以把他删了？？？)
                     iterator.remove();//即把上面的iterator.next() 删除掉  注意（不能调用集合的删除方法  多线程  抛异常）  而使用iterator会对monitor做更新
-                    //判断（对服务器来讲）是否是  可接受事件
+                    //1.先 判断（对服务器来讲）是否是  可接受事件
                     if(selectionKey.isAcceptable()){
                         //表示现在有新的客户端连接请求
                         System.out.println("可接受 请求...");
@@ -57,7 +57,7 @@ public class MyNIOServer {
                         //这个返回 当前事件 所创建的（服务器的）channel
                         ServerSocketChannel channel = (ServerSocketChannel)selectionKey.channel();
                         //接收 这个事件， 获取SocketChannel
-                        SocketChannel socketChannel = channel.accept();//即同意建立连接，返回 客户端的
+                        SocketChannel socketChannel = channel.accept();//（因为客户端不知道啥时会发消息，所以accept是会阻塞下来的）
 
                         //设置socketChannel为非阻塞的
                         socketChannel.configureBlocking(false);
@@ -65,7 +65,7 @@ public class MyNIOServer {
                         socketChannel.register(selector, SelectionKey.OP_READ);
                     }
 
-                    //判断是否是读事件
+                    //2.再 判断是否是读事件
                     //（能到这，链接已经 建立 了）(因为发起读请求，客户端肯定要写，往channel写，而这个 channel肯定是连接上了)
                     if(selectionKey.isReadable()){
                         System.out.println("读请求...");
@@ -75,6 +75,7 @@ public class MyNIOServer {
                         ByteBuffer buffer = ByteBuffer.allocate(100);//能放100个字节的缓冲区
                         //通过channel将数据读取到buffer中
                         socketChannel.read(buffer);
+
                         //进行读写模式切换(因为客户端只发一次数据，不用再等着读入数据了)
                         buffer.flip();
                         //将数据从buffer中读取

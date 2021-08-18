@@ -71,7 +71,7 @@ import java.nio.channels.SocketChannel;
  *
  * Selector维护 三种类型的selectionKey集合
  *      selector.selectedKeys() 已选择键的集合
- *       selector.keys() 已注册键的集合
+ *      selector.keys() 已注册键的集合
  *      selector.cancelKey() 已取消键的集合（为什么要取消键，因为客户端要取消链接，需要取消键 以及 关闭其通道）
  *
  * SelectionKey的四种事件

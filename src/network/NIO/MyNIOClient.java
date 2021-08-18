@@ -30,25 +30,24 @@ public class MyNIOClient {
         try {
             //创建SocketChannel通道
             socketChannel = SocketChannel.open();//open方法创建实例
-            //设置SocketChananel为非阻塞
+            //设置SocketChananel为非阻塞（connect本身是阻塞方法，设置通道后 无论是否 连接成功都得立即返回）
             socketChannel.configureBlocking(false);
             //通过open实例化Selector
             Selector selector = Selector.open();
             System.out.println("客户端启动了...");
 
-            //连接有可能没建立成功（网络问题），就要去选择器上监听
+            //连接（三次握手）有可能没建立成功（网络问题），就要去选择器上监听
             if(!socketChannel.connect(new InetSocketAddress("127.0.0.1", 9999))){
-                //将这个 通道 注册到  选择器 上
+                //将这个 通道 注册到  选择器 上，关注 可连接事件
                 socketChannel.register(selector, SelectionKey.OP_CONNECT);
-                //监听Selector 选择器
-                //由于select操作只管对selectedKeys的集合进行添加而不负责移除，所以当某个消息被处理后我们需要从该集合里去掉
-                selector.select();//没有 就绪 事件，就会阻塞到这一步
+
+                selector.select();//没有 就绪 事件，就会 阻塞 到这一步
+
                 //遍历已完成事件的集合
                 Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
-
                 while(iterator.hasNext()) {
                     SelectionKey selectionKey = iterator.next();
-                    iterator.remove();//因为处理一个  删除一个
+                    iterator.remove();//由于select操作只管对selectedKeys的集合进行添加而不负责移除，所以 处理一个  删除一个
 
                     //判断是否存在 可连接 事件
                     if (selectionKey.isConnectable()) {
