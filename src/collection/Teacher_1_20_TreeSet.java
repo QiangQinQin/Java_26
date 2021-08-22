@@ -1,5 +1,6 @@
 package collection;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -10,6 +11,7 @@ import java.util.TreeSet;
 * 1）自然顺序
 * 2）比较器接口所定义的顺序
 * （TreeMap讲过这个顺序，类似）
+* https://blog.csdn.net/diweikang/article/details/80788194
 */
 
 class Student2{
@@ -43,7 +45,7 @@ public class Teacher_1_20_TreeSet {
 		// TODO Auto-generated method stub
 
 //        System.out.println("TreeSet:自然顺序 =========");
-//        //String实现Comparable接口 使得String类型的对象是可比较
+//        //String实现Comparable接口 使得String类型的对象是可比较   (排序方法，CompareTo)
 //        TreeSet<String> treeset = new TreeSet<>();
 //        //添加元素
 //        treeset.add("图论");
@@ -67,17 +69,17 @@ public class Teacher_1_20_TreeSet {
         
         System.out.println("TreeSet:比较器顺序 =========");
         //new的时候传了一个比较器对象
-        //传单独的比较器对象 ，实现Comparator接口      
+        //传单独的比较器对象 ，实现Comparator接口，排序方法compare
         TreeSet<Student2> treeset1 = new TreeSet<Student2>(   new Comparator(){
             @Override
             public int compare(Object o1, Object o2) {
                 //按照姓名长度由短到长排序
-                //如果姓名长度相同按照年龄排序
+                //如果姓名长度相同按照年龄从小到大排序
                 int nameDiff = ((Student2)o1).getName().length() -  ((Student2)o2).getName().length();//获得差值
                 if(nameDiff == 0 ){
                     return ((Student2)o1).getAge()- ((Student2)o2).getAge();
                 }else{
-                    return nameDiff;//差值为正，排在前面
+                    return nameDiff;
                 }
             }
         }   );
@@ -100,8 +102,8 @@ public class Teacher_1_20_TreeSet {
         //删除元素
         treeset1.remove(new Student2("zhangsan", 18));
         System.out.println(treeset1);
-        
-        
+
+//        Collections
         
 	}
 

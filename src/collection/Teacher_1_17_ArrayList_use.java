@@ -22,13 +22,13 @@ ArrayList
 *非线程安全
 *add/remove/grow modCount++  集合结构的修改次数。若迭代的时候，发现别的线程修改了集合结构，就要抛出异常（864  908行 ）
 *
-*从modCount了解Java集合的fast - fail机制
+*从modCount(版本号)了解Java集合的fast - fail机制
 Java中非线程安全的集合（如ArrayList、 HashMap）， 经常可以在一些修改集合结构的操作（add remove等）中可以看到实例变量
 modCount++， 以此来统计集合的修改次数
 fast-fail机制: 它是 能够 立刻 报告 任何 可能导致失败的 错误检测机制
 表现为：当使用迭代器时，当构造迭代器对象时，起初expectedModCount = modCount ,在迭代的过程会判断
 expectedModCount和modCount之间的关系，如果modCount与期望值不符合，就说明在迭代的过程
-中集合结构发生了修改，便会抛出ConcurrentModificationException的异常，避免对数据同步带来的麻烦
+中集合结构发生了修改（由于并发），便会抛出ConcurrentModificationException的异常，避免对数据同步带来的麻烦
 *
 *
 *ArrayList和数组的区别?

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  *Blocked(阻塞状态)
  * 		等待一监视器 锁  进入  同步代码块 或者 同步方法，代码块/方法指的是某一时刻只能够有一个线程执行的，其他线程只能等待
  *Waiting(等待状态) 
- *		Object.wait()/Thread.join()/LockSupport.park()都会使得线程阻塞，从Runnable转换到Waiting状态
+ *		Object.wait()/Thread.join()/LockSupport.park()都会使得线程阻塞，从Running转换到Waiting状态
  *     （java里叫waiting  操作系统里（Blocked 、Waiting 、TIMED_WAITTING）都叫阻塞）
  *Timed_Waiting(睡眠状态)
  *		 调用加超时参数的Object.wait(long mills)/Thread.slepp(long mills)/LockSupport.parkNano()/LockSupport.parkUntil()

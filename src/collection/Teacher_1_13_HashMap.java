@@ -1,4 +1,5 @@
 package collection;
+import java.util.Hashtable;
 import java.util.Iterator;
 
 /**
@@ -323,6 +324,7 @@ class MyHashMap<K,V> {
 
 public class Teacher_1_13_HashMap {
     public static void main(String[] args) {
+//        Hashtable
     	 MyHashMap<Integer, String> map = new MyHashMap<>(16);
          map.put(1, "dksjfkjd");
          map.put(17, "jd");

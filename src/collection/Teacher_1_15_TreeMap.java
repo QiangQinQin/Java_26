@@ -57,7 +57,7 @@ public class Teacher_1_15_TreeMap {
         map.put(new P("qoje", 78), 2);
         map.put(new P("adf", 100), 3);
 
-        //按照分数大小输出
+        //按照分数 从小到大 输出
         for(P key: map.keySet()){
             System.out.println(key);
         } 

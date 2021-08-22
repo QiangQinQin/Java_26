@@ -34,6 +34,8 @@ package IO;
  */
 
 
+import java.io.InputStreamReader;
+
 /**
  * 接口
  */
@@ -56,7 +58,7 @@ class ConcreteComponent implements Component{
  * 装饰类      实现Component接口
  */
 abstract class Decorator implements Component{
-    //内部会维护一个ConcreateComponent的   实例
+    //内部会维护一个Component的   实例
     private Component component; //这种方式叫组合
 
     //这个实例是在构造函数中初始化
@@ -126,5 +128,6 @@ public class Teacher_1_22_Decorative {
         b.method();
         b.methodB1();
         b.methodB2();
+        
     }
 }

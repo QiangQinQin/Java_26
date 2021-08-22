@@ -1,9 +1,6 @@
 package collection;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 //哈希表  Map接口的简单使用
 public class Teacher_1_12_Map {
@@ -21,7 +18,7 @@ public class Teacher_1_12_Map {
 		System.out.println(map.containsKey("tulun"));
 		System.out.println(map.containsValue(50));
 		
-		//返回Map中所包含的键值对所组成的Set集合，每个集合元素都是Map.Entry()对象，其中Entry是Map的内部类
+		//返回Map中所包含的键值对(<String,Integer>)所组成的Set集合，每个集合元素都是Map.Entry()对象，其中Entry是Map的内部类
 		Set<Map.Entry<String,Integer>> entries=map.entrySet();
 		//Set属于Collection,而COllection含有Iterator方法
 		Iterator<Map.Entry<String,Integer>> iterator=entries.iterator();
@@ -30,7 +27,7 @@ public class Teacher_1_12_Map {
 			Map.Entry<String,Integer> next=iterator.next();
 			System.out.println(next.getKey()+"::"+next.getValue());
 		}
-		
+
 	}
 
 }
