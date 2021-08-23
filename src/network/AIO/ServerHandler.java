@@ -6,7 +6,7 @@ import java.nio.channels.CompletionHandler;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-//连接建立成功的处理函数  实现 CompletionHandler接口
+//连接建立成功的 处理函数  实现 CompletionHandler接口
                           //CompletionHandler<V, A>回调函数  V是IO操作后返回的结果类型（客户端的socket）   A要进行IO操作的对象的类型
 public class ServerHandler implements CompletionHandler<AsynchronousSocketChannel, AIOServer> {//AIOserver中就有AsynchronousServerSocketChannel
 
@@ -14,7 +14,7 @@ public class ServerHandler implements CompletionHandler<AsynchronousSocketChanne
     @Override
     public void completed(AsynchronousSocketChannel result, AIOServer attachment) {
         //继续监听通道上连接，可以处理下一个  客户端的链接请求，类似递归
-        // （你写的服务器端代码 也就是用户程序，不需要等读写操作完成，因为操作系统帮你做，所以用户程序可以做别的事情（即接受连接））
+        // （你写的服务器端代码 也就是用户程序，不需要等读写操作完成，因为 操作系统 帮你做，所以用户程序可以做别的事情（即接受连接））
         attachment.getServerChannel().accept(attachment, new ServerHandler());//attachment即serverChannel，他可以accept其他连接请求
 
         doRead(result);

@@ -24,16 +24,16 @@ package network;
  * 服务器端：
  *      1、实例化 ServerSocketChannel（new的时候也可以把端口传进去）
  *      2、绑定端口 通过ServerSocketChannel调用bind()方法
- *      3、设置ServerSocketChannel为非阻塞 configureBlocking....
+ *      3、设置ServerSocketChannel为非阻塞 configureBlocking....  （connect本身是阻塞方法，设置通道后 无论是否 连接成功都得立即返回）
  *      4、实例化Selector选择器（也叫多路复用器 用来管理channels）
  *      5、将ServerSocketChannel注册到选择器上  ServerSocketChannel.register()
  *      6、监听是否有新的事件 （服务器端叫）接收(（客户端叫）连接)事件/读写事件/     Selector.select()（类似于accept，没事件就阻塞，有事件就是返回一个大于0的结果）
- *      7、获取 已完成事件 的集合，对于这个集合进行遍历，如果发现是Accept事件则进行accept调用（即同意连接，进行TCP三次握手），
- *          获取SocketChannel，注册到Selector上，关注（注册）read事件
- *      8、监听是否有read读就绪事件
- *      9、若有读就绪事件，就通过SocketChananel通道来读取数据（不是直接和数据源），通过buffer作为传输介质
+ *      7、获取 已完成事件 的集合，对于这个集合进行遍历，如果发现是Accept事件则进行accept调用（即同意连接，进行TCP三次握手），获取到SocketChannel
+ *      8、先将SocketChannel设置为非阻塞，再将其注册到Selector上，关注（注册）read事件
+ *      9、监听是否有read读就绪事件
+ *      10、若有读就绪事件，就通过SocketChananel通道来读取数据（不是直接和数据源），通过buffer作为传输介质
  *        （可以在读事件中注册一个写事件，也可以不注册，因为是主动发起的）
- *      10、关闭资源 SocketChannel Selector ServerSocketChannel
+ *      11、关闭资源 SocketChannel Selector ServerSocketChannel
  *
  * 客户端：
  * 1、实例化 SocketChannel
@@ -74,7 +74,7 @@ package network;
  * 选择器类管理着一个被注册的通道集合的信息和它们的就绪状态。
  * 通道是和选择器一起被注册的，并且使用选择器来更新通道的就绪状态。
  *
- * 选择器是对 select( )、poll( )等本地调用(native call)或者类似的操作系统特定的系统调用的一个包装。
+ *  选择器（selector）  是对 select( )、poll( )等本地调用(native call)或者类似的操作系统特定的系统调用的一个包装。
  *  select( )方法调用，如果没有通道已经准备好，线程可能会在这时阻塞，通常会有一个超时值，直到至少有一个已注册的通道就绪
  * select返回值不是已准备好的通道的总数，而是从上一个 select( )调用之后进入就绪状态的通道的数量。返回值可能是 0。
  *
