@@ -1,5 +1,7 @@
 package collection;
 
+import java.util.HashMap;
+
 /**
  * HashMap源码分析(面试)
  * 1）类的继承关系
@@ -60,7 +62,7 @@ package collection;
  *                 //桶里结点个数是否大于阈值
  *                 if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
  *                      treeifyBin(tab, hash);//大于8，小于64，先扩容；大于64再转化为红黑树     HashMap 755行
- *                      break;                //在桶的深度（大）和链的长度（短）之间平衡，保证O（1）
+ *                      break;                //在桶的深度（大）和链的长度（短）之间平衡，保证O（1）  https://blog.csdn.net/wo1901446409/article/details/97388971
  *                 }
  *              //判断e是否是key重复的节点
  *              if (e.hash == hash &&((k = e.key) == key || (key != null && key.equals(k))))
@@ -89,6 +91,6 @@ d.最后元素转移完之后，会将新数组的对象赋值给HashMap中table
  */
 
 public class Teacher_1_13_HashMap_Source {
-	//HashMap  //看为什么要继承和实现这些接口
+//	HashMap  //看为什么要继承和实现这些接口
 
 }

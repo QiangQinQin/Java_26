@@ -60,7 +60,8 @@ public class Teacher_1_15_TreeMap {
         //按照分数 从小到大 输出
         for(P key: map.keySet()){
             System.out.println(key);
-        } 
+        }
+
         //依靠比较器逻辑，能够得到2
         System.out.println(map.get(new P("qoje", 78)));
         

@@ -110,8 +110,36 @@ public class Teacher_1_17_ArrayList_use {
 //		while(iterator.hasNext()) {
 //			System.out.println(iterator.next());
 //		}
-//		//将ArrayList转换为Array（数组）
-//		System.out.println(Arrays.toString( list.toArray() ));
+
+
+//		//将ArrayList转换为Array（数组）  https://www.cnblogs.com/echoing/p/9379424.html
+//		System.out.println(Arrays.toString( list.toArray() )); // list先转为 Object数组，然后 添上[]变成字符串打印
+//T[] toArray(T[] a)   将list 转到 指定类型的数组a里,并返回
+
+		List<Integer> list2 = new ArrayList<>();
+		for (int i = 0; i< 10; i++) {
+			list.add(i);
+		}
+		System.out.println("List<Integer> 类型对象：");
+		System.out.println(list);
+		System.out.println();
+
+		System.out.println("Object[] 类型对象：");
+		Object[] integerObjs = list.toArray();
+		System.out.println(Arrays.toString(integerObjs));
+		System.out.println();
+
+		System.out.println("Integer[] 类型对象: ");
+		Integer[] integers = list.toArray(new Integer[list.size()]);
+		System.out.println(Arrays.toString(integers));
+		System.out.println();
+
+		System.out.println("int[] 类型对象：");
+		int[] ints = new int[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			ints[i] = list.get(i);
+		}
+		System.out.println(Arrays.toString(ints));
 	}
 	
 }

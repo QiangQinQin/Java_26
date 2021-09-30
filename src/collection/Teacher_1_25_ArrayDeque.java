@@ -46,13 +46,13 @@ class MyArrayDeque<T> {
 		//判断队满
 		if((tail+1) % elements.length == head){//当前只剩一个空位置了
 			//扩容  和   映射到新数组的下标位置
-			//头部没删除过，尾部到数组末尾。后面追加空间
+			//若头部没删除过： 尾部到数组末尾。后面追加空间
 			if(head==0 ) {
 				elements=Arrays.copyOf(elements,2*elements.length);
 				head=head+elements.length;
 			}
 			
-			//头部删除过元素，数组末尾插完，又从数组头开始插。此时tail在head左边，需要把扩容的空位放在数组中间；不然重新计算每个元素在新数组的位置太费事
+			//若头部删除过元素： 数组末尾插完，又从数组头开始插。此时tail在head左边，需要把扩容的空位放在 数组中间 ；不然重新计算每个元素在新数组的位置太费事
 			if(tail<head) {	
 				T[] tmp=(T[]) new Object[2*elements.length];;//扩容是新开辟一块大空间，把老的复制过来。
 				//                src,srcPos,dest,destPos,复制的length
