@@ -4,12 +4,12 @@ import java.util.*;
 
 /**
  Map集合没有迭代器(iterator()),遍历集合中的元素可以用以下三种方法:
- 1.entrySet();
+ 1.keySet();
  实现步骤:
      1.1.使用Map集合中的keySet()方法,把Map集合所有的key取出 来存储到一个Set集合中
      1.2.遍历set集合,获取Map中的每一个key–遍历set集合可以使用迭代器或者forEach();
      1.3.通过Map集合中的方法get(key),通过key找到value
- 2.keySet();
+ 2.entrySet();
      实现步骤:
      2.1.使用Map集合中的entrySet()方法,把Map集合中多个Entry对象取出来存储到一个Set集合中
      2.2.遍历set集合,获取每一个Entry对象

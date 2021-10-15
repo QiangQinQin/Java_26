@@ -75,7 +75,7 @@ public class Teacher_1_20_TreeSet {
             public int compare(Object o1, Object o2) {
                 //按照姓名长度由短到长排序
                 //如果姓名长度相同按照年龄从小到大排序
-                int nameDiff = ((Student2)o1).getName().length() -  ((Student2)o2).getName().length();//获得差值
+                int nameDiff = ((Student2)o1).getName().length() -  ((Student2)o2).getName().length();//获得差值  若为负数,表示第一个参数 权重小,排序后会放在前面   https://blog.csdn.net/u013066244/article/details/78997869
                 if(nameDiff == 0 ){
                     return ((Student2)o1).getAge()- ((Student2)o2).getAge();
                 }else{

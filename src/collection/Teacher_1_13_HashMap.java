@@ -3,7 +3,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 
 /**
- * HashMap的实现
+ *
  * 自己实现一个哈希表，hash算法类比HashMap中hash算法，解决哈希冲突采用链地址法，
  * 实现put(k key,V value), get(K key), remove(K Key),resize()等方法
  *
