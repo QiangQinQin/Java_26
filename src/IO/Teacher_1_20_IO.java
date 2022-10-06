@@ -156,19 +156,19 @@ public class Teacher_1_20_IO {
     public static void main(String[] args) {
 //        //练习1： 创建两个文件对象，分别使用相对路径和绝对路径
 //    	//相对路径
-////    	File file1_1 = new File("./a.txt"); //创建了一个  能访问  物理文件、目录的对象，但对应不会创建这样一个物理文件              位置和IO包同级，等价于a.txt
+   	File file1_1 = new File("./qq.txt"); //创建了一个  能访问  物理文件、目录的对象，但对应不会创建这样一个物理文件              位置和IO包同级，等价于a.txt
 //        File file1 = new File("src/IO/a.txt"); //在project中，相对路径的根目录是Java_26,相当于.
 //        //绝对路径
 ////      File file2_1 = new File("/Users/lvting/tulun/code/JAVA26/b.txt");//斜线(linux)
 //        File file2 = new File("D:\\Tulun\\Java_26\\src\\IO\\b.txt");//加盘符（windows）
 //        //练习2：检查文件  是否存在  ，不存在则创建文件
-//        if(!file1.exists()){
-//            try {
-//                file1.createNewFile();//refresh一下，就能看到
-//            } catch (IOException e) {
-//                e.printStackTrace();//在一个.java文件里要么在方法添加里抛出异常声明(134行 throws IOException)，要么用try catch块捕获，只能用一种
-//            }
-//        }
+        if(!file1_1.exists()){
+            try {
+                file1_1.createNewFile();//refresh一下，就能看到
+            } catch (IOException e) {
+                e.printStackTrace();//在一个.java文件里要么在方法添加里抛出异常声明(134行 throws IOException)，要么用try catch块捕获，只能用一种
+            }
+        }
 //        if(!file2.exists()){
 //            try {
 //                file2.createNewFile();

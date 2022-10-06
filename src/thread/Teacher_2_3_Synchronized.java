@@ -1,5 +1,7 @@
 package thread;
 
+import network.Teacher_3_23_AIO;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -55,67 +57,67 @@ public class Teacher_2_3_Synchronized {
 	// //synchronzied修饰成员方法，synchornized获取this对象，this对象代表当前对象
     public synchronized void test1(){//不加synchronized就是A B  交替 输出
         //获取test的monitor lock
-//        int i=5;
-//        while(i >=1){
-//            System.out.println(Thread.currentThread().getName()+"::"+i--);
-//            try {
-//                TimeUnit.MILLISECONDS.sleep(10);//毫秒
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        int i=5;
+        while(i >=1){
+            System.out.println(Thread.currentThread().getName()+"::"+i--);
+            try {
+                TimeUnit.MILLISECONDS.sleep(10);//毫秒
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         //将test的monitor lock释放
     }
     public void test2(){
         //同步代码块
         synchronized (this){
             //获取test的monitor lock
-//            int i=5;
-//            while(i >=1){
-//                System.out.println(Thread.currentThread().getName()+"::"+i--);
-//                try {
-//                    TimeUnit.MILLISECONDS.sleep(10);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+            int i=5;
+            while(i >=1){
+                System.out.println(Thread.currentThread().getName()+"::"+i--);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             //释放test的monitor lock
         }
     }
     public static void main(String[] args) {
-//      Teacher_3_23_AIO testSynchronousQueue = new Teacher_3_23_AIO();
-//      Teacher_3_23_AIO test0 = new Teacher_3_23_AIO();
-    	//若下面A 执行 testSynchronousQueue.test1() 和 B 执行 test0.test1(),会交替执行   //因为两个不是一个锁,所以不是一个执行完再下一个
-//      new Thread("A"){
-//          @Override
-//          public void run() {
-//              //testSynchronousQueue.test1();//当前是test对象
-//              testSynchronousQueue.test2();
-//          }
-//      }.start();
-//
-//      new Thread("B"){
-//          @Override
-//          public void run() {
-//              //testSynchronousQueue.test1();
-//              testSynchronousQueue.test2();
-//          }
-//      }.start();
+        Teacher_2_3_Synchronized testSynchronousQueue = new Teacher_2_3_Synchronized();
+        Teacher_2_3_Synchronized test0 = new Teacher_2_3_Synchronized();
+//    	若下面A 执行 testSynchronousQueue.test1() 和 B 执行 test0.test1(),会交替执行   //因为两个不是一个锁,所以不是一个执行完再下一个
+      new Thread("A"){
+          @Override
+          public void run() {
+              testSynchronousQueue.test1();//当前是test对象
+              // testSynchronousQueue.test2();
+          }
+      }.start();
+
+      new Thread("B"){
+          @Override
+          public void run() {
+              testSynchronousQueue.test1();
+              // testSynchronousQueue.test2();
+          }
+      }.start();
     	
     	
     	
-        Object obj  = new Object();
-        //验证synchronized是可重入锁
-        new Thread(){
-            @Override
-            public void run() {
-                synchronized (obj){
-                    System.out.println("entry + 1");
-                    synchronized (obj){
-                        System.out.println("entry + 1 again");
-                    }
-                }
-            }
-        }.start();
+//        Object obj  = new Object();
+//        //验证synchronized是可重入锁
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                synchronized (obj){
+//                    System.out.println("entry + 1");
+//                    synchronized (obj){
+//                        System.out.println("entry + 1 again");
+//                    }
+//                }
+//            }
+//        }.start();
     }
 }

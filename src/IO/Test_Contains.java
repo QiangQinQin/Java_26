@@ -30,7 +30,7 @@ public class Test_Contains {
             //	if (line.contains(subStr)) {
             //		res.put(lineNum, line);
             //``}
-            //	第二种：indexOf
+            //	第二种：indexOf+
             if(line.indexOf(subStr)!=-1){
                 res.put(lineNum, line);
             }

@@ -57,10 +57,10 @@ import java.util.Arrays;
  * */
 public class Teacher_1_20_Byte {
     public static void main(String[] args) {
-   //写 	
+   //写
       FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream("b.txt");//如果不存在 输出流对象会    自动创建该文件 
+            fos = new FileOutputStream("b.txt");//如果不存在 输出流对象会    自动创建该文件
             byte[] bytes = {100, 101, 102, 103};
             fos.write(105);//给b.txt写数据    都变成ASCII对应的字符
             fos.write(bytes);
@@ -76,28 +76,28 @@ public class Teacher_1_20_Byte {
             }
         }
         
-        ////给定a.txt，读取a.txt中所有数据并输出
-//        try {
-//            FileInputStream inputStream = new FileInputStream("testSynchronousQueue.txt");//在Java_26下，和src同级
-//
-////10 ： 是 LF 即 "\n"   13：是CR 即 "\r"
-////在不同的操作系统中，表示的方式是不一样的。在UNIX系统中，换行符使用"\n" , 在 windows 系统中换行使用 "\r\n"，算两个byte; 
-//            //一个一个字节读取
+        //给定a.txt，读取a.txt中所有数据并输出
+        try {
+            FileInputStream inputStream = new FileInputStream("Test_Contains.txt");//在Java_26下，和src同级
+
+//10 ： 是 LF 即 "\n"   13：是CR 即 "\r"
+//在不同的操作系统中，表示的方式是不一样的。在UNIX系统中，换行符使用"\n" , 在 windows 系统中换行使用 "\r\n"，算两个byte;
+            //一个一个字节读取
+            int tmp;
+            while((tmp = inputStream.read()) != -1){
+                System.out.println(tmp);
+            }
+
+//            //使用缓存数组
 //            int tmp;
-//            while((tmp = inputStream.read()) != -1){
-//                System.out.println(tmp);
-//            }          
-//            
-////            //使用缓存数组
-////            int tmp;
-////            byte[] bytes = new byte[256];
-////            tmp = inputStream.read(bytes);//返回buffer中读取的字节数
-////            System.out.println(tmp);
-////            System.out.println(Arrays.toString(bytes));//ASCII值   无效值默认为0
-//        } catch (FileNotFoundException e) {//文件不存在，抛异常
-//            e.printStackTrace();
-//        } catch (IOException e) {//文件某部分损坏
-//            e.printStackTrace();
-//        }
+//            byte[] bytes = new byte[256];
+//            tmp = inputStream.read(bytes);//返回buffer中读取的字节数
+//            System.out.println(tmp);
+//            System.out.println(Arrays.toString(bytes));//ASCII值   无效值默认为0
+        } catch (FileNotFoundException e) {//文件不存在，抛异常
+            e.printStackTrace();
+        } catch (IOException e) {//文件某部分损坏
+            e.printStackTrace();
+        }
     }
 }

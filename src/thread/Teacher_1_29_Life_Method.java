@@ -54,31 +54,33 @@ public class Teacher_1_29_Life_Method {
 //            e.printStackTrace();
 //        }
 //        thread.interrupt();
-//        System.out.println("最后:"+thread.isInterrupted());//true
-    	
+//        System.out.println("最后:"+thread.isInterrupted());//false
+//
         
         
     	
     	
-//        Thread thread = new Thread(){
-//            @Override
-//            public void run() {
-//                while(true){//
-//                    try {//sleep是可中断方法。使得子线程进入阻塞状态 
-//                        TimeUnit.MILLISECONDS.sleep(1); //sleep会擦除中断状态位
-//                    //interrupt方法会打断这种阻塞，会抛出异常
-//    					} catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        };
-//        thread.start();
-////        try {  //好像没用
-////            TimeUnit.MILLISECONDS.sleep(200);
-////        } catch (InterruptedException e) {
-////            e.printStackTrace();
-////        }
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                while(true){//
+                    try {//sleep是可中断方法。使得子线程进入阻塞状态
+                        System.out.println("睡眠前: "+this.isInterrupted());//true
+                        TimeUnit.MILLISECONDS.sleep(1); //sleep会擦除中断状态位
+                        System.out.println("睡眠后: "+this.isInterrupted());//true
+                    //interrupt方法会打断这种阻塞，会抛出异常
+    					} catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        thread.start();
+//        try {  //好像没用
+//            TimeUnit.MILLISECONDS.sleep(200);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //        System.out.println("前: "+thread.isInterrupted());//false
 //        thread.interrupt();//打断sleep造成的阻塞
 //        System.out.println("后: "+thread.isInterrupted());//true

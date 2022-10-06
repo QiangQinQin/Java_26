@@ -31,23 +31,18 @@ import java.util.function.Function;
  */
 
 
-////匿名内部类
-//interface TestLambda{
-//void func();
-////void fun1();
-//}
-
 //函数式接口（只有一个方法）（）比如runnable
-@FunctionalInterface
+@FunctionalInterface  //只能有一个抽象方法
 interface TestLambda{
     void func();
     //void fun1();
 }
 
 
+
 @FunctionalInterface
 interface TestLambda1{
-    void func(String test);
+    void func(String test); //有参数
     //void fun1();
 }
 public class Teacher_1_27_lambda {
@@ -55,7 +50,7 @@ public class Teacher_1_27_lambda {
 
     }
     public static void main(String[] args) {
-    	//匿名内部类
+  //匿名内部类  （类没有名字，但它的实例化对象是 lambda1）
         TestLambda lambda1 = new TestLambda(){
             @Override
             public void func() {
@@ -67,20 +62,31 @@ public class Teacher_1_27_lambda {
 //                System.out.println("fun1");
 //            }
         };
-        
-        
-        //lambda表达式
-        TestLambda1 lambda2 = (test)-> System.out.println("testSynchronousQueue lambda");
-        BinaryOperator<Long>functionAdd=(x,y)->x+y;
+        lambda1.func();   //打印 fun
 
-      //  Long result=functionAdd(1L,2L);
-      
-        BinaryOperator<Long> a=(x, y) -> x+y;//https://objcoding.com/2019/03/04/lambda/
-     //   Long result=a(1L,2L);
-       System.out.println(a);
+//  lambda表达式
+    //没有参数
+        TestLambda testLambda = () -> System.out.println("Hello World!");
+        testLambda.func();//hello world
+    //有参数
+        //原方法无入参
+        TestLambda1 testLambda1 = name -> System.out.println("Hello World from " + name + " !");
+        testLambda1.func("XiAn"); // 打印 Hello World from XiAn !
+
+        //原方法有入参
+        TestLambda1 lambda2 = test-> System.out.println("testSynchronousQueue lambda; 变量="+test);
+        lambda2.func("qq"); //打印 testSynchronousQueue lambda; 变量=qq
+
+    //包含两个参数的方法 (可显示指定参数类型)
+        BinaryOperator<Long> functionAdd2=(x,y)->x+y;
+        BinaryOperator<Long> functionAdd=(Long x,Long y)->x+y;
+        Long result= functionAdd.apply(1L,2L);
+        System.out.println(result);
+
+
+    // 简化comparator
         String[] strs = "shhs Ihhjdh iwjjjd AJhjhhhs bjfhdh".split(" ");
         Arrays.sort(strs, (String s1, String s2)-> s1.toLowerCase().compareTo(s2.toLowerCase()));//lamuda一步实现自定义排序（减化了上面21行）
-        System.out.println(Arrays.toString(strs));
-
+        System.out.println(Arrays.toString(strs)); // [AJhjhhhs, bjfhdh, Ihhjdh, iwjjjd, shhs]
     }
 }

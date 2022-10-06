@@ -53,6 +53,9 @@ public class Teacher_1_12_Collection {
         Emp emp3 = new Emp(1, "Liu Bei");
         empList = Arrays.asList(emp1, emp2, emp3);// 讲元素为(emp1, emp2, emp3的数组 转换成 List，并用 emplist指向
 
+        Collections.sort(empList); // 自动调用compareTo
+        System.out.println(empList);//[empno:	3	ename:	Zhang Fei, empno:	1	ename:	Liu Bei, empno:	2	ename:	Guan YunChang]
+
         Collections.sort(empList, new Comparator<Emp>() {
             @Override
             public int compare(Emp o1, Emp o2) {
@@ -66,6 +69,7 @@ public class Teacher_1_12_Collection {
                 //return o2.getEname().compareTo(o1.getEname());
             }
         });
+        System.out.println(empList); //[empno:	1	ename:	Liu Bei, empno:	2	ename:	Guan YunChang, empno:	3	ename:	Zhang Fei]
     }
 
     //继承Comparable接口 并 重写compareTo方法
