@@ -83,6 +83,7 @@ class MyThread extends Thread{
         }
     }
 }
+
 class MyRunnable implements Runnable{
  //可自动生成
     @Override
@@ -95,7 +96,6 @@ class MyRunnable implements Runnable{
 }
 
 class MyCallable implements Callable<Integer>{
-
     @Override
     public Integer call() throws Exception {
         int sum = 0;
@@ -110,48 +110,8 @@ class MyCallable implements Callable<Integer>{
 public class Teacher_1_27_Thread {
     
     public static void main(String[] args) {
-    	////实现Callable接口，
-        Callable<Integer> callableTask = new MyCallable();
-        //需要做封装，才能传
-        FutureTask<Integer> task = new FutureTask<>(callableTask);// FutureTask是runnable的一个实现，提供get方法
-        Thread thread = new Thread(task);//参数只能是runnable类型或其子类
-        thread.start();
 
-        //接受子线程执行之后的结果
-        try {
-        	// FutureTask提供get方法，（等待直到有结果传过来，主线程才能往后执行）
-            Integer integer = task.get();
-            System.out.println("result: "+integer);
-        } catch (InterruptedException e) {//自动生成的
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        
-        
-////使用匿名内部类，（Teacher_1_29_life  91行，用lamada创建）
-//      new Thread(){
-//      @Override
-//      public void run() {
-//          System.out.println("thread-0");
-//      }
-//  }.start();
-        
-        
-        
-////implements Runnable创建子线程
-//        //创建子线程对象,将Runnable实例作为参数实例化子线程对象
-//        Thread thread = new Thread(new MyRunnable());
-//        //启动吃饭的thread
-//        thread.start(); 
-//        //main线程
-//        while(true){
-//            System.out.println("watch TV"); //3
-//        }
-
-        
-////extends Thread创建子线程
+////方式1： extends Thread创建子线程
 ////吃饭  睡觉两个线程没有主次   先后之分  （就是看谁先抢到cpu使用权）     
 ////main  1   2  3    1 2  3
 ////子              1 2             1  2
@@ -163,5 +123,43 @@ public class Teacher_1_27_Thread {
 //      while(true){
 //          System.out.println("watch TV"); //3
 //      }
+
+////方式2： implements Runnable创建子线程
+//        //创建子线程对象,将Runnable实例作为参数实例化子线程对象
+//        Thread thread = new Thread(new MyRunnable());
+//        //启动吃饭的thread
+//        thread.start();
+//        //main线程
+//        while(true){
+//            System.out.println("watch TV"); //3
+//        }
+
+////方式3： 使用匿名内部类，（Teacher_1_29_life  91行，用lamada创建）
+//      new Thread(){
+//      @Override
+//      public void run() {
+//          System.out.println("thread-0");
+//      }
+//  }.start();
+
+
+////方式4： 实现Callable接口，
+        Callable<Integer> callableTask = new MyCallable();
+        //需要做封装，才能传
+        FutureTask<Integer> task = new FutureTask<>(callableTask);// FutureTask是runnable的一个实现，提供get方法
+        Thread thread = new Thread(task);//参数只能是runnable类型或其子类
+        thread.start();
+
+        //接受子线程执行之后的结果
+        try {
+            // FutureTask提供get方法，（等待直到有结果传过来，主线程才能往后执行）
+            Integer integer = task.get();
+            System.out.println("result: "+integer);
+        } catch (InterruptedException e) {//自动生成的
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 }
