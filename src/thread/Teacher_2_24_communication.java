@@ -108,46 +108,58 @@ class TestThread extends Thread{
 }
 public class Teacher_2_24_communication {
     public static void main(String[] args) {
-        //通信对象（唯一）
-    	MyObj obj = new MyObj();
+//        //通信对象（唯一）
+//    	MyObj obj = new MyObj();
+//
+//        obj.setNextValue(0);//都用obj对象，并且obj对象的nextValue可以变
+//        //三个线程同时运行，和index不同的就一直阻塞
+//        //每输出一轮，A B C都要依次输出其线程对应的名字
+//        new TestThread(0, obj).start();
+//        new TestThread(1, obj).start();
+//        new TestThread(2, obj).start();
+//
 
-        obj.setNextValue(0);//都用obj对象，并且obj对象的nextValue可以变
-        //三个线程同时运行，和index不同的就一直阻塞
-        //每输出一轮，A B C都要依次输出其线程对应的名字
-        new TestThread(0, obj).start();
-        new TestThread(1, obj).start();
-        new TestThread(2, obj).start();
+
+
+/*
+打印结果：
+开始notify time 1665145944149
+结束notify time1665145944149
+the current running thread is A
+
+即A唤醒了B，让B先执行，然后A才执行
+* */
+//      B线程唤醒A线程
+        String lock = new String("testSynchronousQueue");
+        Thread threadA = new Thread("A"){
+            @Override
+            public void run() {
+                try {
+                    synchronized (lock){//需要先获取锁
+                        lock.wait(); //让当前线程陷入阻塞 A线程陷入阻塞  同时 立即释放锁
+							//等B释放锁给他，才能接着执行
+                        System.out.println("the current running thread is "+Thread.currentThread().getName());
+                    }
+                } catch (InterruptedException e) {
+                    //响应中断
+                    System.out.println("the thread has been interrupted and the state is "+Thread.currentThread().isInterrupted());
+                }
+            }
+        };
+        threadA.start();
+       // threadA.interrupt();
+
+        new Thread("B"){
+            @Override
+            public void run() {
+                synchronized (lock){
+                    System.out.println("开始notify time "+System.currentTimeMillis());
+                    lock.notify(); //需要先获取lock的锁，才能执行唤醒A线程的操作 ;  notify()完不会 立即释放锁，只有B执行完了，才释放锁，A拿到,才能接着执行
+                    System.out.println("结束notify time"+System.currentTimeMillis());
+                }
+            }
+        }.start();
     }
 }
 
 
-////      B线程唤醒A线程
-//        String lock = new String("testSynchronousQueue");
-//        Thread threadA = new Thread("A"){
-//            @Override
-//            public void run() {
-//                try {
-//                    synchronized (lock){//需要先获取锁
-//                        lock.wait(); //让当前线程陷入阻塞 A线程陷入阻塞  同时 立即释放锁
-//							//等B释放锁给他，才能接着执行
-//                        System.out.println("the current running thread is "+Thread.currentThread().getName());
-//                    }
-//                } catch (InterruptedException e) {
-//                    //响应中断
-//                    System.out.println("the thread has been interrupted and the state is "+Thread.currentThread().isInterrupted());
-//                }
-//            }
-//        };
-//        threadA.start();
-//       // threadA.interrupt();
-//
-//        new Thread("B"){
-//            @Override
-//            public void run() {
-//                synchronized (lock){
-//                    System.out.println("开始notify time "+System.currentTimeMillis());
-//                    lock.notify(); //需要先获取lock的锁，才能执行唤醒A线程的操作 ;  notify()完不会 立即释放锁，只有B执行完了，才释放锁，A拿到,才能接着执行
-//                    System.out.println("结束notify time"+System.currentTimeMillis());
-//                }
-//            }
-//        }.start();

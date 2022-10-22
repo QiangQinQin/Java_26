@@ -1,6 +1,7 @@
 package IO;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -107,7 +108,56 @@ public class Teacher_1_20_IO {
         }        
         file.delete(); //删除当前空的目录     
     }
-    
+
+    /**
+     * 树形结构打印
+     * @param filePath
+     */
+    public static void printTree(String filePath) {
+        /**
+         * 1、参数合法性校验
+         * 2、如果是文件  当前属于第几层打印层级表示和文件名
+         * 3、如果是目录的   进入目录 当前是第几次目录
+         */
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            //无效的路径
+            System.out.println("无效的路径");
+            return;
+        }
+
+
+        if (file.isFile()) {
+            //文件
+            System.out.println("|"+file.getName());
+        } else {
+            //目录
+            printDir(file,"|-");
+        }
+
+    }
+
+    private static void printDir(File file, String suff){
+        System.out.println(suff+file.getAbsolutePath());
+        File[] files = file.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return !pathname.isHidden();
+            }
+        });
+        for (File f:files) {
+            if (f.isFile()) {
+                System.out.println(suff+f.getName());
+            } else {
+                //目录
+                printDir(f,suff+"-");
+            }
+
+        }
+    }
+
+
     //获取某一个目录下的所有文件
     public static void printFile(File dir){
         if(dir == null || !dir.exists()){
@@ -156,19 +206,19 @@ public class Teacher_1_20_IO {
     public static void main(String[] args) {
 //        //练习1： 创建两个文件对象，分别使用相对路径和绝对路径
 //    	//相对路径
-   	File file1_1 = new File("./qq.txt"); //创建了一个  能访问  物理文件、目录的对象，但对应不会创建这样一个物理文件              位置和IO包同级，等价于a.txt
+//   	File file1_1 = new File("./qq.txt"); //创建了一个  能访问  物理文件、目录的对象，但对应不会创建这样一个物理文件              位置和IO包同级，等价于a.txt
 //        File file1 = new File("src/IO/a.txt"); //在project中，相对路径的根目录是Java_26,相当于.
 //        //绝对路径
 ////      File file2_1 = new File("/Users/lvting/tulun/code/JAVA26/b.txt");//斜线(linux)
 //        File file2 = new File("D:\\Tulun\\Java_26\\src\\IO\\b.txt");//加盘符（windows）
 //        //练习2：检查文件  是否存在  ，不存在则创建文件
-        if(!file1_1.exists()){
-            try {
-                file1_1.createNewFile();//refresh一下，就能看到
-            } catch (IOException e) {
-                e.printStackTrace();//在一个.java文件里要么在方法添加里抛出异常声明(134行 throws IOException)，要么用try catch块捕获，只能用一种
-            }
-        }
+//        if(!file1_1.exists()){
+//            try {
+//                file1_1.createNewFile();//refresh一下，就能看到
+//            } catch (IOException e) {
+//                e.printStackTrace();//在一个.java文件里要么在方法添加里抛出异常声明(134行 throws IOException)，要么用try catch块捕获，只能用一种
+//            }
+//        }
 //        if(!file2.exists()){
 //            try {
 //                file2.createNewFile();
@@ -181,11 +231,11 @@ public class Teacher_1_20_IO {
 //        if(!file3.exists()){
 //            file3.mkdir();
 //        }
-        //练习4：创建多级目录
-        File file4 = new File("./bbb");//手动给bbb(和src同级)下面创建一些文件，利用file4可以访问对应的物理文件，可以把多级目录bbb删空
-        if(!file4.exists()){
-            file4.mkdirs();
-        }
+//        //练习4：创建多级目录
+//        File file4 = new File("./bbb");//手动给bbb(和src同级)下面创建一些文件，利用file4可以访问对应的物理文件，可以把多级目录bbb删空
+//        if(!file4.exists()){
+//            file4.mkdirs();
+//        }
 //        //练习5：删除文件 目录(该目录下的所有文件都删除)（笔试题）
 //        file1.delete();//删除文件
 //        file2.delete();
@@ -216,6 +266,7 @@ public class Teacher_1_20_IO {
         //练习8：获取某一个目录下的所有文件
         //listFiles->返回文件  对象  的集合 ,File[]   而       list->文件   pathName  的集合,String[]
         printFile(new File("bbb"));
+        printTree("E:\\tulun\\java\\Java_26\\bbb");
         ////练习9：从键盘上输入一个路径，打印出该路径下所有.java文件（笔试题）
         //System.out.println("output the .java file of JAVA_26");
         //printJavaFile(new File("/Users/lvting/tulun/code/JAVA26/"));
