@@ -26,6 +26,7 @@ public class BasicThreadPool extends Thread implements ThreadPool {
     private final Queue<ThreadTask> threadQueue = new ArrayDeque<>();
     //拒绝策略
     private final static DenyPolicy DEFAULT_DENY_POLICY = new DenyPolicy.DiscardDenyPolicy();
+
     //看下面，自定义线程工厂
     private final static ThreadFactory DEFAULT_THREAD_FACTORY =
             new DefaultThreadFactory();
