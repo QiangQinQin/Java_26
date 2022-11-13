@@ -86,19 +86,25 @@ class Student{
 }
 public class Teacher_1_14_CustomTye {
     public static void main(String[] args) {
-    	
-    	//不重写equals方法，会默认使用Object的equals逻辑，比的 是地址==
-        //hash函数会调用  自己已重写的HashCode生成hash值      HashMap源码339行        306行equals
-    	//HashMap源码635行putVal新值覆盖旧值逻辑： e.hash==hash && (e.key == key || e.key.equals(key))
+        /*张三新值会覆盖旧值吗？
+         不重写equals方法，会默认使用Object的equals逻辑，比的 是地址==。
+                         两次new,是不同对象，有不同地址，hash值不一样
+                         所以打印：{Student{name='张三', age=20}=tulun111, Student{name='张三', age=20}=hdjhshjh}
+         重写equals和hashCode，后调用put
+             首先调hash函数，进而调到自己重写的HashCode()来生成hash值      HashMap源码339行 hash()       306行equals
+    	     然后调putVal。  新值覆盖旧值逻辑是： e.hash==hash && (e.key == key || e.key.equals(key))   HashMap源码635行
+         才会只比较 name和年龄，即打印第二个 张三 值，即{Student{name='张三', age=20}=tulun111}
+          */
         HashMap<Student, String> map = new HashMap<>();
         map.put(new Student("张三", 20), "hdjhshjh");
         map.put(new Student("张三", 20), "tulun111");
-        //张三新值覆盖旧值？  两次new,是不同对象，有不同地址，hash值不一样
-      
+
+
+        System.out.println(map);
+
         //String和Integer就重写了equals方法
       
         //HashMap
-        
         map.put(new Student("李四", 25), "jdshjd");
         map.put(new Student("王五", 22), "teiehff");
         map.put(new Student("小明", 18), "okeejjej");
