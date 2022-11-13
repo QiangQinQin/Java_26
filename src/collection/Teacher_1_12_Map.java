@@ -7,6 +7,7 @@ public class Teacher_1_12_Map {
 	public static void main(String[] args) {
 		Map<String,Integer> map=new HashMap<>();//Map父类
 		map.put("zhangsan", 10);
+		map.put("yangsan", 10);
 		map.put("lisa", 20);
 		map.put("wangwu", 50);
 		
@@ -17,9 +18,14 @@ public class Teacher_1_12_Map {
 		System.out.println(map.isEmpty());
 		System.out.println(map.containsKey("tulun"));
 		System.out.println(map.containsValue(50));
-		
-		//返回Map中所包含的键值对(<String,Integer>)所组成的Set集合，每个集合元素都是Map.Entry()对象，其中Entry是Map的内部类
+
+		/*  entrySet()返回Map中所包含的键值对(<String,Integer>)所组成的Set集合，每个集合元素都是Map.Entry()对象，其中Entry是Map的内部类
+		   如返回[a=2, c=3, d=3] ，其中 2是Map.Entry.getKey()拿到的 a是Map.Entry.getValue()
+		    */
 		Set<Map.Entry<String,Integer>> entries=map.entrySet();
+		System.out.println("keySet"+map.keySet()); // 只返回Map集合中所有的key
+
+
 		//Set属于Collection,而COllection含有Iterator方法
 		Iterator<Map.Entry<String,Integer>> iterator=entries.iterator();
 		while(iterator.hasNext())
