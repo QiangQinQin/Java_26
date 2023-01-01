@@ -1,10 +1,7 @@
 package collection;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /*
 List接口
@@ -40,6 +37,15 @@ ArrayList可以解决以上问题
 */
 public class Teacher_1_17_ArrayList_use {
 	public static void main(String[] args) {
+//		set转ArrayList
+		TreeSet<Integer> set = new TreeSet<>();
+		set.add(7);
+		set.add(3);
+		set.add(5);
+		set.add(7);
+		ArrayList<Integer> setList = new ArrayList<>(set);
+		System.out.println(setList); //[3,5,7]
+
 		// TODO Auto-generated method stub
 		//单线程
 		ArrayList<Integer> list = new ArrayList<>();

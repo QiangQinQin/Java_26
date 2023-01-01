@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -21,6 +22,28 @@ import java.util.stream.Stream;
  * Stream操作步骤
  * 1）获取一个stream
  * 2) 使用stream操作数据  ：中间操作的中间链    和 一个终止操作(执行完中间操作的中间链返回最终结果)
+
+ 知识体系  +  广度
+菜鸟：https://www.runoob.com/java/java8-streams.htmlhttps://www.runoob.com/java/java8-streams.html
+ 掘金：https://juejin.cn/post/6844903830254010381
+ Collectors提供的收集器：https://www.cnblogs.com/softwarearch/p/16490440.html
+
+ 这种风格将要处理的元素集合看作一种流， 流在管道中传输， 并且可以在管道的节点上进行处理， 比如筛选， 排序，聚合等。
+
+ 元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作(terminal operation)得到前面处理的结果。
+
+ +--------------------+       +------+   +------+   +---+   +-------+
+ | stream of elements +-----> |filter+-> |sorted+-> |map+-> |collect|
+ +--------------------+       +------+   +------+   +---+   +-------+
+ 以上的流程转换为 Java 代码为：
+
+ List<Integer> transactionsIds =
+ widgets.stream()
+ .filter(b -> b.getColor() == RED)
+ .sorted((x,y) -> x.getWeight() - y.getWeight())
+ .mapToInt(Widget::getWeight)
+ .sum();
+
  */
 //自定义类型
 class Student{
@@ -93,23 +116,24 @@ public class Teacher_1_27_Stream {
     }
     
     public static void main(String[] args) {
-        //步骤1创建stream
-        //方法1：通过一个集合的stream方法创建流
+   //步骤1创建stream
+        //方法1：通过一个集合的stream()方法创建流
         List<Student> students = getStudents();
         System.out.println(students);
-
         Stream<Student> stream = students.stream();
+
         //方法2：Stream.of
         Stream<Student> stream1 = Stream.of(new Student(1, "小白", 25, 89.5),
                   new Student(2, "小李", 18, 99.5),
                   new Student(3, "小蔡", 20, 69.5));
+
         //方法3：通过数组创建stream
         Student[] studentsArr = (Student[]) students.toArray(new Student[students.size()]);//转化为数组，并强转
         Stream<Student> stream2 = Arrays.stream(studentsArr);//数组转化为流
         
         
         
-        //步骤2：Stream操作数据
+    //步骤2：Stream操作数据
         /**
          * filter： 接受一个lambda表达式，从流中进行过滤
          * limit: 截断流，筛选出前N条数据
@@ -126,7 +150,7 @@ public class Teacher_1_27_Stream {
         /**
          * map
          *  接受lambda表达式
-         *  可将元素转换为其他形式，接受一个函数作为参数，该函数会被应用到流里的每个元素上，并且映射成一个新元素
+         *  可将元素转换为其他形式，接受一个  函数  作为参数，该函数会被应用到  流里的每个元素上 ，并且映射成一个新元素
          **/
         List<String> list = Arrays.asList("djh", "wkjd", "c3",  "b1", "c1", "c2");//数组转化为list
         //获取集合的流
@@ -139,17 +163,18 @@ public class Teacher_1_27_Stream {
          * sorted ->自然排序
          * sorted -> 定制排序
          */
-//        根据成绩从小到大进行排序
+        // 根据成绩从小到大进行排序
         stream.sorted( (s1, s2)-> (int) (s1.getScore()-s2.getScore()) )
                           .forEach(System.out::println);//strea里的s1 s2,传一个比较器
 
         /**
-         *  终端 操作
+         * 终端 操作
          * 匹配和查找的方法
-         * allMatch 检查是否匹配所有元素
-         * anyMathch 检查是否至少匹配一个元素
-         * noneMath 检查是否没有匹配所有元素
-         * findFirst 返回第一个元素
+         *   allMatch 检查是否匹配所有元素
+         *   anyMathch 检查是否至少匹配一个元素
+         *   noneMath 检查是否没有匹配所有元素
+         *   findFirst 返回第一个元素
+         *
          * count 返回流中元素的总个数
          * max 返回流中最大值
          * min 返回流中最小值
