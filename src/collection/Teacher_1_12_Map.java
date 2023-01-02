@@ -68,6 +68,33 @@ public class Teacher_1_12_Map {
 
 		String score = map1.getOrDefault("score", "80");
 		System.out.println(score);// 80，map中不存在score,使用默认值80
+
+
+
+		// HashMap<Integer, List<Integer>>
+		// https://blog.csdn.net/misayaaaaa/article/details/128042802?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167195530316800192279961%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=167195530316800192279961&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-3-128042802-null-null.blog_rank_default&utm_term=%E5%B0%84%E5%87%BB%E6%AF%94%E8%B5%9B%E6%88%90%E7%BB%A9&spm=1018.2226.3001.4450
+
+//		//  写法1
+//		HashMap<Integer, List<Integer>> map = new HashMap<>();// id 对应 所有成绩
+//		for (int i = 0; i < 5; i++) {
+//			if(map.containsKey(ids[i])){
+//				map.get(ids[i]).add(scores[i]);
+//				map.put(ids[i], map.get(ids[i]));
+//			}else{
+//				ArrayList<Integer> arrayList = new ArrayList<>();
+//				arrayList.add(scores[i]);
+//				map.put(ids[i],arrayList);
+//			}
+//		}
+//
+////  写法2
+//		// 存储选手成绩信息
+//		HashMap<Integer, List<Integer>> map = new HashMap<>();
+//		for (int i = 0; i < n; i++) {
+//			List<Integer> list = map.getOrDefault(ids.get(i), new LinkedList<>());// ！！！有就get，没有就new一个
+//			list.add(scores.get(i));
+//			map.put(ids.get(i), list);
+//		}
 	}
 
 }
