@@ -146,6 +146,24 @@ public class Teacher_1_17_ArrayList_use {
 			ints[i] = list.get(i);
 		}
 		System.out.println(Arrays.toString(ints));
+
+/* subList(int fromIndex, int toIndex)
+教程： https://www.runoob.com/java/java-arraylist-sublist.html
+ 不建议用：https://baijiahao.baidu.com/s?id=1637211558024016793&wfr=spider&for=pc
+ */
+
+		ArrayList<String> sites = new ArrayList<>();
+		sites.add("Google");
+		sites.add("Runoob");
+		sites.add("Taobao");
+		sites.add("Wiki");
+		System.out.println("SubList: " + sites.subList(1, 3)); // 截取 [1,3) 号元素， 但 return的是  SubList！！！是ArrayList的一个视图，对于subList子列表的所有操作会反应到原列表上
+
+/*
+removeRange(int fromIndex, int toIndex)
+protect方法，不常用，如果要使用需要继承 ArrayList 类   https://www.runoob.com/java/java-arraylist-removerange.html
+*/
+
 	}
 	
 }
